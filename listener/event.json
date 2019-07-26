@@ -1,0 +1,55 @@
+{
+    "list":{
+        "general":[
+            {
+                "event" : "EVENT_EXIT_ROOM",
+                "type" : "WITHOUT_SENDER"
+            },
+            {
+                "event" : "EVENT_JOIN_ROOM",
+                "type" : "ALL_CLIENT"
+            },
+            {
+                "event" : "EVENT_JOIN_ROOM_HANDSHAKE",
+                "type" : "WITHOUT_SENDER"
+            }
+        ],
+        "motor":[
+
+        ],
+        "gluegun":[
+
+        ],
+        "label":{
+            "window":[
+                {
+                    "event" : "EVENT_SEND_ORIGINAL_IMAGE",
+                    "type" : "WITHOUT_SENDER"
+                },
+                {
+                    "event" : "EVENT_SEND_INSPECTION_IMAGE",
+                    "type" : "WITHOUT_SENDER"
+                },
+                {
+                    "event" : "EVENT_SEND_LABEL_EACH_RESULT",
+                    "type" : "WITHOUT_SENDER"
+                }
+            ],
+            "android":{
+                "tablet":[
+                    {
+                        "event" : "EVENT_SEND_TAKED_PHOTO",
+                        "type" : "WITHOUT_SENDER"
+                    }
+                ],
+                "camera":[
+
+                ]
+            }
+        }
+    }
+        
+       
+        
+    
+}
