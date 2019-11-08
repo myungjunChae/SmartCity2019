@@ -8,7 +8,6 @@ let emitterImpl = (io, socket) => {
     return {
         emit(payload) {
             console.log(`${payload.device} call [${payload.event}]`);
-            console.log(payload.data)
 
             if (payload.broadcastType === "WITHOUT_SENDER")
                 socket.broadcast.to(room).emit(payload.event, {

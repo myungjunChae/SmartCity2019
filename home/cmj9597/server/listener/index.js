@@ -1,35 +1,6 @@
 let fs = require('fs');
 let event = require('./event.json');
 let util = require('../util/util.js')
-let {
-    PythonShell
-} = require('python-shell')
-
-let image_path = require('path').dirname(require.main.filename) + '/object_detection_tensorflow/saved_image/'
-
-
-let callPython = () => {
-    //call python
-    var options = {
-        mode: 'text',
-        pythonPath: '/usr/bin/python',
-        pythonOptions: ['-u'],
-        // make sure you use an absolute path for scriptPath
-        scriptPath: '/home/cmj9597/server/object_detection_tensorflow',
-    };
-
-    let shell = new PythonShell('image_detector.py', options);
-    shell.send()
-
-    shell.on('message', function (message) {
-        console.log(message)
-    });
-
-    shell.end(function (err, code, signal) {
-        if (err) throw err;
-        util.remove_all_file(image_path)
-    });
-}
 
 let listener = (socket, device) => {
     console.log("Device : ", device);
@@ -73,21 +44,17 @@ let defaultListener = (socket, emitter) => {
 
         socket.on(ele.event, (data) => {
             //tensorflow
+            let image_path = require('path').dirname(require.main.filename) + '/object_detection_tensorflow/saved_image/'
+            util.remove_all_file(image_path)
 
-            //image save
+            console.log('length = ', data.length);
             data.forEach((value, index) => {
                 util.base64_decoder(value, index, image_path)
             })
 
-            callPython();
-
-            //file remove
-
             /*for (let temp in data) {
                 console.log(data);
             }*/
-
-            //data를 전달할 것
             //injection(ele, data, emitter(io, socket));
         });
     });
